@@ -13,7 +13,7 @@ COPY ["./TodoAPI.csproj", "TodoAPI/"]
 RUN dotnet restore "./TodoAPI/./TodoAPI.csproj"
 COPY . .
 WORKDIR "/src/TodoAPI/"
-RUN dotnet build --no-cache "TodoAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "TodoAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
