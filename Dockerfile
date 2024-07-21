@@ -11,8 +11,9 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["./TodoAPI.csproj", "TodoAPI/"]
 RUN dotnet restore "./TodoAPI/./TodoAPI.csproj"
-COPY . .
+
 WORKDIR "/src/TodoAPI/"
+COPY . .
 RUN dotnet build "TodoAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
