@@ -1,4 +1,4 @@
-name: Deploy Image to GHCR
+name: Deploy Images to GHCR
 
 env:
   DOTNET_VERSION: '8.0.x'
@@ -26,5 +26,5 @@ jobs:
 
           - name: 'Build Inventory Image'
             run: |
-              docker build --no-cache ./TodoAPI/ --tag ghcr.io/karimdevwm/todo_api:latest
+              docker build --no-cache . --tag ghcr.io/karimdevwm/todo_api:latest
               docker push ghcr.io/karimdevwm/todo_api:latest

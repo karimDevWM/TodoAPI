@@ -9,11 +9,12 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["TodoAPI/TodoAPI.csproj", "TodoAPI/"]
+COPY ["./TodoAPI.csproj", "TodoAPI/"]
 RUN dotnet restore "./TodoAPI/./TodoAPI.csproj"
+
+WORKDIR "/src/TodoAPI/"
 COPY . .
-WORKDIR "/src/TodoAPI"
-RUN dotnet build "./TodoAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "TodoAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
